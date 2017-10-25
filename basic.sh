@@ -6,6 +6,8 @@ set -o errexit
 
 sed -i "s/SELINUX=enforcing/SELINUX=disabled/" /etc/selinux/config
 sed -i "s/#UseDNS yes/UseDNS no/" /etc/ssh/sshd_config
+systemctl stop firewalld
+systemctl disable firewalld
 yum -y remove wpa_supplicant iprutils iwl*firmware libertas* ivtv* alsa-* btrfs-progs* aic94xx-firmware kexec-tools NetworkManager* microcode_ctl
 systemctl enable network
 systemctl start network
